@@ -1,0 +1,60 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Lines - Minimalist Hugo theme</title><description/><link>http://burekoveposlastice.github.io/</link><language>en</language><copyright>Copyright 2021, Ronalds Vilcins</copyright><lastBuildDate>Mon, 22 Feb 2021 00:00:00 +0000</lastBuildDate><generator>Hugo - gohugo.io</generator><docs>http://cyber.harvard.edu/rss/rss.html</docs><atom:link href="https://ronaldsvilcins.com/atom.xml" rel="self" type="application/atom+xml"/><item><title>Switching from Hexchat to Weechat</title><link>http://burekoveposlastice.github.io/2021/02/22/switching-from-hexchat-to-weechat/</link><description>&lt;p>My decision for switching IRC clients might not be as interesting and compelling to some of you reading this blog and this post, but it is a reason enough to stop me from being &lt;em>irked&lt;/em>. A little back-story is in order to understand why am i doing this. Some time ago, for various different reasons but mainly personal ones I have switched distro, and now my PC is running &lt;a href="https://www.opensuse.org/#Tumbleweed">OpenSUSE Tumbleweed&lt;/a>, and KDE Plasma as my prefered DE. Over the course of more than a year i have been running vanilla Plasma without changing themes, colours, or icons. The reason behind that is that third-party themes are not consistent enough, and i can&amp;rsquo;t find ones that are pleasing to my eyes. IMO, Breeze Dark is perfect for what it is, and i got used to. Now, the &amp;ldquo;issue&amp;rdquo; comes with the newest KDE Plasma, and i found out that after a bit of research and friendly folks on IRC. Apparently, KDE Plasma started supporting GTK themes through &amp;ldquo;Colours&amp;rdquo; in System Settings, but they also stopped supporting GTK2 theming. Unfortunatelly, &lt;a href="https://hexchat.github.io/">Hexchat&lt;/a> is GTK2 still, and nothing can change the default light GTK theme on it even though my Hexchat colour theme is dark. That in itself is very irritating durring night hours when i visit IRC friends, LUGs, and other misc. servers/channels. I belive my issue would be easily resolved with a terminal app such as Weechat, because, fortunately, there&amp;rsquo;s plethora of themes for &lt;a href="https://konsole.kde.org/">Konsole&lt;/a>. Not to prolong this story more than I should&amp;hellip;&lt;/p>
+&lt;p>First step would be installing Weechat, which i do through terminal. In my case:&lt;/p>
+&lt;pre>&lt;code>sudo zypper in weechat
+&lt;/code>&lt;/pre>
+&lt;p>To start Weechat, open Konsole(or whichever your prefered terminal is), and type &lt;code>weechat&lt;/code>. Now, since we started Weechat, we need to add some servers. My go to server is &lt;a href="https://freenode.net/">Freenode&lt;/a>. Before we do that, note that Weechat comes with it&amp;rsquo;s own set of &lt;em>quirks&lt;/em>(compared to GUI clients that already have most of configuration set up). You have to manually set, or install scripts for things like autojoining servers and/or channels, colorizing nicknames etc.&lt;/p>
+&lt;p>Table of contents:&lt;/p>
+&lt;ol>
+&lt;li>Adding Servers&lt;/li>
+&lt;li>Changing Nickname/Username&lt;/li>
+&lt;li>Connecting to Servers&lt;/li>
+&lt;li>Joining Servers and Channels&lt;/li>
+&lt;li>Plugins&lt;/li>
+&lt;li>Misc&lt;/li>
+&lt;/ol>
+&lt;p>====================================================================&lt;/p>
+&lt;ol>
+&lt;li>Adding Servers&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>/server add freenode chat.freenode.net
+&lt;/code>&lt;/pre>
+&lt;ol start="2">
+&lt;li>Changing Nickname/Username&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>/set irc.server.freenode.nicks &amp;quot;mynick,mynick2,mynick3,mynick4,mynick5&amp;quot;
+/set irc.server.freenode.username &amp;quot;mynick&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;ol start="3">
+&lt;li>Connecting to Servers&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>/connect freenode
+&lt;/code>&lt;/pre>
+&lt;ol start="4">
+&lt;li>Joining Servers and Channels&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>/set irc.server.freenode.autoconnect on
+/set irc.server.freenode.autojoin &amp;quot;#channel1,#channel2&amp;quot;
+&lt;/code>&lt;/pre>
+&lt;p>&lt;a href="https://weechat.org/files/doc/stable/weechat_quickstart.en.html#join_part_irc_channels">https://weechat.org/files/doc/stable/weechat_quickstart.en.html#join_part_irc_channels&lt;/a>&lt;/p>
+&lt;ol start="5">
+&lt;li>Plugins&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>/set script.scripts.download_enabled
+/script install autojoin.py colorize_nicks.py autosort.py
+&lt;/code>&lt;/pre>
+&lt;ol start="6">
+&lt;li>Misc&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code>/mouse enable
+/set spell.check.default_dict en
+/set spell.check.suggestions 3
+/spell enable
+/filter add joinquit * irc_join,irc_part,irc_quit *
+&lt;/code>&lt;/pre>
+&lt;p>Configuring SASL for WeeChat -&lt;/p>
+&lt;p>&lt;a href="https://freenode.net/kb/answer/weechat">https://freenode.net/kb/answer/weechat&lt;/a>&lt;/p>
+&lt;p>Nicking bits and piece from the internet -&lt;/p>
+&lt;p>&lt;a href="https://gist.github.com/pascalpoitras/8406501">https://gist.github.com/pascalpoitras/8406501&lt;/a>&lt;/p>
+&lt;p>After setting all of this up, don&amp;rsquo;t forget the last bit:&lt;/p>
+&lt;pre>&lt;code>/save
+&lt;/code>&lt;/pre></description><author>ronalds.vilcins@gmail.com (Ronalds Vilcins)</author><guid>http://burekoveposlastice.github.io/2021/02/22/switching-from-hexchat-to-weechat/</guid><pubDate>Mon, 22 Feb 2021 00:00:00 +0000</pubDate></item></channel></rss>
